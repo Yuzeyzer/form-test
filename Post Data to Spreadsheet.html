@@ -2,33 +2,44 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="./MID.css">
 
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: h;
+  }
+form {
+  padding: 2rem;
+  margin: 0 -2rem;
+  border: 3px solid #f1f1f1;
+  width: 50%;
+  }
 h1 {
   text-align: center;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+label {
+  padding: 1rem;
 }
 input[type=text], input[type=email], select {
-  width: 49%;
-  font-size:20px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 button {
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 8px 8px;
   border: none;
   cursor: pointer;
-  width: 100%;
 }
 
 button:hover {
@@ -74,31 +85,25 @@ span.psw {
 </head>
 <body style="background:#000;">
 
-<h1 style="color:#fff">wanTED Tutorial: Post HTML Form Data to Google Spreadsheet in 2 Minutes</h1>
+<h1 style="color:#fff">Simple Form with basic validation</h1>
 
-<form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off"> 
-<input id="nameField" name="entry.1894817801" placeholder="Enter your name" type="text" required> 
-<input id="emailField" name="entry.1460625151" placeholder="Enter your email" type="email" required> 
-<input id="mobField" name="entry.253696403" placeholder="Enter your 10 Digit Phone Number" type="text" pattern="^\d{10}$" required>  
-<select id="cinema" name="entry.1593618861" placeholder="Select Cinema" required>
+<form id="form" class="flex fl-wrap" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off"> 
+<label for="" class="col-6"><input class="p-1" id="nameField" name="entry.1894817801" placeholder="Enter your name" type="text" required></label> 
+<label for="" class="col-6"><input class="p-1" id="emailField" name="entry.1460625151" placeholder="Enter your email" type="email" required></label> 
+<label for="" class="col-6"><input class="p-1" id="mobField" name="entry.253696403" placeholder="Enter your 10 Digit Phone Number" type="text" pattern="^\d{10}$" required></label>  
+<label for="" class="col-6"><select class="p-1" id="cinema" name="entry.1593618861" placeholder="Select Cinema" required>
 <option value="">Why wanTED Talks Youtube Channel?</option>
 <option value="City: Delhi, Cinema: PVR Logix City Centre IMAX, Noida">Time Saving Fast Track Tutorials</option>
 <option value="City:Bengaluru  Cinema:Cinepolis IMAX Forum Shantiniketan">Provide Code for reference</option>
 <option value="City:Chennai Cinema:SPI Palazo The Forum Vijaya Mall, Vadapalani">Instant Replies of Comments</option>
 <option value="City:Pune Cinema:Cinepolis Westend Mall, Pune">Latest Code Updates</option> 
 </select> 
-<button id="send" type="submit" class="common_btn">Register Now</button>
+</label>
+<button id="send" type="submit" class="common_btn col-12">Register Now</button>
 </form>
 
 <h3 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:#fff"> Your Request has been posted to Google Spreadsheet</h3>
-
-
-
-<img src="wan.jpg" style="width:100%; opacity:.4;">
-
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 function postToGoogle() {
                 var field1 = $("#nameField").val();
@@ -121,10 +126,6 @@ function postToGoogle() {
 					document.getElementById("mobField").focus();
 					return false;
 				}
-
-
-				
-	
                 $.ajax({
                     url: "https://docs.google.com/forms/d/e/1FAIpQLScSKMB59Xpu6VazbsXaBbziUVFr0GmoMmKhVU1W-NsXJnkDqw/formResponse?",
 					data: {"entry.1894817801": field1, "entry.1460625151": field2, "entry.253696403": field3, "entry.1593618861": field4},
